@@ -1,0 +1,59 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #1b314c; 
+    padding: 20px 20px;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0;
+}
+
+.navbar .logo:hover {
+    color: #f3a847; 
+}
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+}
+
+.content {
+    width: 60%;
+    margin: 20px auto; 
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+.student {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px; 
+}
+
+button:hover {
+    background-color: #0056b3;
+}

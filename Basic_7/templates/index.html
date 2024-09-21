@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Forum</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#" class="logo">My Forum</a>
+    </div>
+    <div class="content">
+        <form method="POST">
+            <p>
+                <b><label for="content">To Do</label></b>
+            </p>
+            <p>
+                <input type="text" id="content" name="content" placeholder="Enter your to-do item here" required>
+            </p>
+            <p>
+                <b><label for="extra_content">Additional Notes</label></b>
+            </p>
+            <p>
+                <input type="text" id="extra_content" name="extra_content" placeholder="Enter additional notes here">
+            </p>
+            <p>
+                <b><label>Degree</label></b>
+            </p>
+            <p>
+                <input type="radio" name="degree" id="degree_0" value="important" required>
+                <b><label for="degree_0">Important</label></b>
+            </p>
+            <p>
+                <input type="radio" name="degree" id="degree_1" value="unimportant" required>
+                <b><label for="degree_1">Unimportant</label></b>
+            </p>
+            <p>
+                <button type="submit">Submit</button>
+            </p>
+        </form>
+
+        {% for item in student %}
+        <div class="student">
+            <p>
+                <b>{{ item['content'] }}</b> : <i>{{ item['degree'] }}</i>
+            </p>
+            {% if 'Notes' in item %}
+            <p><i>{{ item['Notes'] }}</i></p>
+            {% endif %}
+            <form method="POST" action="{{ url_for('delete', id=item['_id']) }}">
+                <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this item?')">
+            </form>
+        </div>
+        {% endfor %}
+        <hr>
+    </div>
+</body>
+</html>
+
+
+

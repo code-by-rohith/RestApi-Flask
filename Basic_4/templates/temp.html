@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    {% for i in func %}
+    <li {% if i >5 %} style="color:red" {% endif %}>{{i}}</li>
+    {%endfor%} 
+</ul>
+
+
+
+</body>
+</html>

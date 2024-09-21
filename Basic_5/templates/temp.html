@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File Upload and Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form method="POST" action="/sik">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit" value="Login">
+    </form>
+
+    <h1>File Upload</h1>
+    <form method="POST" action="/upload_file" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".xlsx, .xls, .txt ,.csv" required>
+        <input type="submit" value="Upload File">
+    </form>
+</body>
+</html>
