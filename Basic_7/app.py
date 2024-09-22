@@ -11,7 +11,7 @@ student = db.student
 def index():
     if request.method=='GET':
         student_col = student.find()
-        return render_template('index.html', student=student_col)
+        return render_template('login.html', student=student_col)
     elif request.method == 'POST':
         content = request.form['content']
         degree = request.form['degree']

@@ -19,7 +19,7 @@ def format_student(student):
 def index():
     students = list(students_collection.find())
     formatted_students = [format_student(student) for student in students]
-    return render_template('index.html', students=formatted_students)
+    return render_template('login.html', students=formatted_students)
 
 @app.route('/students', methods=['GET'])
 def get_students():

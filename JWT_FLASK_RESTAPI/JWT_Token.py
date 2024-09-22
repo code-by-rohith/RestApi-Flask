@@ -21,7 +21,7 @@ def helperfunction(market):
 def login():
     username = request.json.get('username')
     password = request.json.get('password')
-    if username == 'admin' and password == 'password':  # Simple example
+    if username == 'admin' and password == 'password':
         access_token = create_access_token(identity=username)
         return jsonify(access_token=access_token), 200
     return jsonify({'message': 'Invalid credentials'}), 401
