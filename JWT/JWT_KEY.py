@@ -1,30 +1,52 @@
-import jwt
-import datetime
-import secrets
+from flask import Flask, jsonify, request
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 
-SECRET_KEY = secrets.token_hex(32)
+app = Flask(__name__)
+app.config['JWT_SECRET_KEY'] = 'welcome'
+jwt = JWTManager(app)
 
-def create_jwt(user_id):
-    payload = {
-        'user_id': user_id,
-        'exp': datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=1)
+
+users = {}
+data = {}
+current_id = 1
+
+@app.route('/see', methods=['GET'])
+def see():
+    return jsonify({"Data": data})
+
+@app.route('/register', methods=['POST'])
+def register():
+    global current_id
+    username = request.json.get('username')
+    password = request.json.get('password')
+
+    if username in users:
+        return jsonify({"msg": "User already exists"}), 400
+    users[username] = password
+
+    data[current_id] = {
+        "username": username,
+        "password": password
     }
-    token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
-    return token
+    current_id += 1
 
-def decode_jwt(token):
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
-        return payload
-    except jwt.ExpiredSignatureError:
-        return "Token has expired"
-    except jwt.InvalidTokenError:
-        return "Invalid token"
+    return jsonify({"msg": "User registered successfully", "user_id": current_id - 1}), 201
+@app.route('/login', methods=['POST'])
+def login():
+    username = request.json.get('username')
+    password = request.json.get('password')
+
+    if users.get(username) != password:
+        return jsonify({"msg": "Bad username or password"}), 401
+
+    access_token = create_access_token(identity=username)
+    return jsonify(access_token=access_token)
+
+@app.route('/protected', methods=['GET'])
+@jwt_required()
+def protected():
+    current_user = get_jwt_identity()
+    return jsonify(logged_in_as=current_user), 200
 
 if __name__ == '__main__':
-    user_id = 123
-    token = create_jwt(user_id)
-    print(f"Generated JWT: {token}")
-
-    decoded_payload = decode_jwt(token)
-    print(f"Decoded JWT: {decoded_payload}")
+    app.run(debug=True)
