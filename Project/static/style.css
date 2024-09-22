@@ -1,0 +1,65 @@
+body {
+    margin: 0; /* Remove default body margin */
+    font-family: 'Arial', sans-serif; /* Use a similar font */
+}
+
+nav {
+    background-color: #232F3E; /* Dark navy blue, similar to Amazon's header */
+    padding: 25px 40px; /* Increased padding for a wider navbar */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 30px; /* Increased spacing between items */
+}
+
+nav a {
+    color: #FFFFFF; /* White text */
+    text-decoration: none;
+    font-size: 16px; /* Similar font size to Amazon's nav */
+    font-weight: bold; /* Bold text for emphasis */
+    padding: 10px 15px; /* Padding around links for a button-like feel */
+}
+
+nav a:hover {
+    text-decoration: underline; /* Underline effect on hover */
+}
+
+/* Additional styles for other elements */
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px; /* Add some padding around products */
+}
+
+.product {
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 10px;
+    width: 200px;
+}
+
+.product-image {
+    width: 150px; /* Fixed width */
+    height: 150px; /* Fixed height */
+    object-fit: cover; /* Ensures the image covers the area without stretching */
+    margin-bottom: 10px; /* Space between image and text */
+}
+
+
+.cart-items {
+    margin-top: 20px;
+}
+
+.cart-item {
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 10px;
+}
