@@ -12,7 +12,7 @@ products_collection = db['products']
 def format_product(product):
     return {
         'id': str(product['_id']),
-        'name': product['name'],
+        'name': product['name'], 
         'description': product['description'],
         'price': product['price'],
         'image': product['image'],
