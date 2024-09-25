@@ -7,9 +7,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
-
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # Auto-incrementing
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(50))
     roll_no = db.Column(db.Integer, unique=True)
     science = db.Column(db.Float)
@@ -19,7 +18,7 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<User {self.name}>'
-
+       
 @app.route('/')
 def home():
     return "Welcome to the website"

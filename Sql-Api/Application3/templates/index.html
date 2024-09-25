@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register User</title>
+</head>
+<body>
+    <h1>User Registration</h1>
+    
+    {% if message %}
+        <p style="color: green;">{{ message }}</p>
+    {% endif %}
+    
+    <form action="/register" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="roll_no">Roll No:</label>
+        <input type="number" id="roll_no" name="roll_no" required><br><br>
+        
+        <input type="submit" value="Register">
+    </form>
+    
+    <br>
+    <a href="/">Go to Home</a>
+</body>
+</html>
