@@ -49,8 +49,7 @@ def edit(user_id):
         user.name = request.form.get('name')
         user.email = request.form.get('email')
         db.session.commit()
-        return redirect(url_for('main'))
-    
+        return redirect(url_for('main'))    
     return render_template('edit.html', user=user)
 
 @app.route('/delete/<int:user_id>', methods=['POST'])
