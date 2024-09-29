@@ -1,0 +1,15 @@
+{% extends 'nav.html'%}
+
+{% block content%}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {%for datas in data%}
+    <h1><li><b>{{datas | op}}</li></h1>
+    {% endfor %}
+    
+</body>
+{%endblock%}

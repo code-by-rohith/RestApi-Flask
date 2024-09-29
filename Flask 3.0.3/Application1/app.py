@@ -46,6 +46,7 @@ def loop():
 
 @app.errorhandler(404)
 def error(e):
+    flash('Page not found.', 'danger')
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
