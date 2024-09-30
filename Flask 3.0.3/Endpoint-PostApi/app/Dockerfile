@@ -1,9 +1,23 @@
-FROM python:3.10
-EXPOSE 5000
+# Use the official Python image
+FROM python:3.9-slim
+
+# Set the working directory
 WORKDIR /app
-RUN pip install flask pymongo
-COPY . .
-CMD ["flask","run","--host","0.0.0.0"]
+
+# Copy the requirements file
+COPY requirements.txt .
+
+# Install the dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application code
+COPY app.py .
+
+# Expose the port
+EXPOSE 5000
+
+# Command to run the app
+CMD ["python", "app.py"]
 
 
 

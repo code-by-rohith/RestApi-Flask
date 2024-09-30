@@ -7,6 +7,7 @@ app.secret_key = 'your_secret_key'
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/blog' 
 mongo = PyMongo(app)
 
+
 @app.route('/')
 def index():
     posts = mongo.db.posts.find()
