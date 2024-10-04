@@ -5,7 +5,6 @@ app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'welcome'
 jwt = JWTManager(app)
 
-
 users = {}
 data = {}
 current_id = 1

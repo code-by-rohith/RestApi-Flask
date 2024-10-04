@@ -19,7 +19,7 @@ def format_student(student):
 def index():
     students = list(students_collection.find())
     formatted_students = [format_student(student) for student in students]
-    return render_template('login.html', students=formatted_students)
+    return render_template('INDEX.html', students=formatted_students)
 
 @app.route('/students', methods=['GET'])
 def get_students():
@@ -33,8 +33,9 @@ def create_student():
         'name': data['name'],
         'roll_no': data['roll_no']
     }
-    students_collection.insert_one(new_student)
-    return jsonify({'message': 'Student added successfully'}),201
+    result =students_collection.insert_one(new_student)
+    id_ins = str(result.inserted_id)
+    return jsonify({'message': 'Student added successfully',"id":id_ins}),201
 
 @app.route('/students/<string:id>', methods=['PUT'])
 def update_student(id):
