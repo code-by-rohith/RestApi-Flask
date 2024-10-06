@@ -17,7 +17,7 @@ def login():
      
         token = jwt.encode({
             'sub': username,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=1)  # Token expires in 1 minute
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=1) 
         }, SECRET_KEY, algorithm='HS256')
         return jsonify(token=token), 200
     
