@@ -5,7 +5,7 @@ import datetime
 app = Flask(__name__)
 
 SECRET_KEY = 'DADADA' 
-users = {'test': 'test123'}  # Simple user store
+users = {'test': 'test123'}  
 
 @app.route('/login', methods=['POST'])
 def login():
