@@ -34,6 +34,7 @@ def login():
 
     if existing_user:
         col.update_one({"username": username}, {"$set": {"token": workflow}})
+        return jsonify({" message":f"Updated {username} sucessfully "})
     else:
         col.insert_one({"username": username, "token": workflow})
 
