@@ -4,7 +4,7 @@ import datetime
 
 app = Flask(__name__)
 
-SECRET_KEY = 'DADADA'  # Secret key for signing the JWT
+SECRET_KEY = 'DADADA' 
 users = {'test': 'test123'}  # Simple user store
 
 @app.route('/login', methods=['POST'])
@@ -13,9 +13,8 @@ def login():
     username = data.get('username')
     password = data.get('password')
 
-    # Check if the user exists and the password is correct
     if users.get(username) == password:
-        # Create a JWT token
+     
         token = jwt.encode({
             'sub': username,
             'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=1)  # Token expires in 1 minute
@@ -32,7 +31,7 @@ def protected():
         return jsonify(message='Token is missing!'), 403
     
     try:
-        # Decode the token
+ 
         payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
         return jsonify(message=f'Hello, {payload["sub"]}!'), 200
     except jwt.ExpiredSignatureError:
