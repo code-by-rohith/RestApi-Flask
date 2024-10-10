@@ -34,7 +34,7 @@ def login():
 
     if existing_user:
         col.update_one({"username": username}, {"$set": {"token": workflow}})
-        return jsonify({" message":f"Updated {username} sucessfully "})
+        return jsonify({" message":f"Updated {username} sucessfully ","updated token":workflow})
     else:
         col.insert_one({"username": username, "token": workflow})
 
@@ -70,6 +70,7 @@ def getter(id):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 """
 JWT, or JSON Web Token, is a method for securely transmitting information between two parties, like a client and a server. 
