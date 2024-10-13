@@ -6,6 +6,7 @@ app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb://mongo:27017/studentdb"
 mongo = PyMongo(app)
 
+
 @app.route('/students', methods=['POST'])
 def add_student():
     name = request.json.get('name')

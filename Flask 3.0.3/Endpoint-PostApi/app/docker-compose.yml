@@ -8,6 +8,7 @@ services:
     volumes:
       - mongo_data:/data/db
     restart: always
+    
 
   flask:
     build: .
