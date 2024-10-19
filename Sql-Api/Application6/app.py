@@ -57,7 +57,6 @@ def get_all_users():
     users = User.query.all()
     return jsonify([user.to_dict() for user in users])
 
-
 @app.route('/api/v1/login', methods=['POST'])
 def login_user():
     username = request.json.get('username')
