@@ -9,10 +9,7 @@ Data = []
 def getter():
     output_data = []
     for student in Data:
-
-        total = student['Mark_1'] + student['Mark_2']
-        student_with_total = student.copy()  
-        student_with_total['Total'] = total   
+        student_with_total = student.copy()   
         output_data.append(student_with_total)
     
     return jsonify(obj_many.dump(output_data)), 200  
@@ -32,6 +29,7 @@ def poster():
         Data.append(reqq)      
     except Exception as e:
         return jsonify({"message": str(e)}), 500  
+    print(Data)
 
     return jsonify({"message": "Successfully posted", "data": reqq}), 201  
 

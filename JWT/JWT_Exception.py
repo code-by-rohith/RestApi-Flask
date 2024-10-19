@@ -49,7 +49,7 @@ def check():
         try:
             find = jwt.decode(token, app.config['SECRETKEY'], algorithms=['HS256'])
             return jsonify({"username": find['sub']})
-        
+         
         except jwt.ExpiredSignatureError:
             return jsonify({"message": "token expired"}), 401
         

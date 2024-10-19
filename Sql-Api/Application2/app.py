@@ -7,6 +7,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(50))
@@ -18,7 +19,7 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<User {self.name}>'
-       
+
 @app.route('/')
 def home():
     return "Welcome to the website"
@@ -51,13 +52,13 @@ def data_valid():
             "Social": social,
             "Maths": maths,
             "Percentage": percentage
-
-        },{"message":"Sucessfully Added !!1 The Above Data"})
+        }, {"message": "Successfully Added!! The Above Data"})
     
     return jsonify({"error": "Invalid method. Use POST."}), 405
 
 with app.app_context():
     db.create_all()
+    print("Database created!")
 
 if __name__ == '__main__':
     app.run(debug=True)
