@@ -7,7 +7,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# User model
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), unique=True, nullable=False)
@@ -16,11 +16,9 @@ class User(db.Model):
     def to_dict(self):
         return {"username": self.username}
 
-# Create the database
 with app.app_context():
     db.create_all()
 
-# Route to create a user
 @app.route('/api/v1/users/<string:username>', methods=['POST'])
 def create_user(username):
     if User.query.filter_by(username=username).first():
@@ -36,7 +34,6 @@ def create_user(username):
     db.session.commit()
     return jsonify({"message": "User created", "username": username}), 201
 
-# Route to get a specific user
 @app.route('/api/v1/users/<string:username>', methods=['GET'])
 def get_user(username):
     user = User.query.filter_by(username=username).first()
@@ -44,7 +41,7 @@ def get_user(username):
         return jsonify(user.to_dict())
     return jsonify({"message": "User not found"}), 404
 
-# Route to delete a user
+
 @app.route('/api/v1/users/<string:username>', methods=['DELETE'])
 def delete_user(username):
     user = User.query.filter_by(username=username).first()
@@ -54,11 +51,26 @@ def delete_user(username):
         return jsonify({"message": "User deleted"}), 200
     return jsonify({"message": "User not found"}), 404
 
-# Route to get all users
+
 @app.route('/api/v1/users', methods=['GET'])
 def get_all_users():
     users = User.query.all()
     return jsonify([user.to_dict() for user in users])
+
+
+@app.route('/api/v1/login', methods=['POST'])
+def login_user():
+    username = request.json.get('username')
+    password = request.json.get('password')
+
+    if not username or not password:
+        return jsonify({"message": "Username and password are required"}), 400
+
+    user = User.query.filter_by(username=username).first()
+    if user and check_password_hash(user.password, password):
+        return jsonify({"message": "Login successful", "username": user.username}), 200
+
+    return jsonify({"message": "Invalid username or password"}), 401
 
 if __name__ == '__main__':
     app.run(debug=True)
