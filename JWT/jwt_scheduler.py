@@ -73,7 +73,7 @@ def login():
 def check():
     data = request.json
     token = data.get('token')
-    
+   
     if token:
         try:
             find = jwt.decode(token, app.config['SECRETKEY'], algorithms=['HS256'])
@@ -97,8 +97,7 @@ def getter(id):
 if __name__ == '__main__':
     scheduler = BackgroundScheduler()
     scheduler.add_job(delete_expired_tokens, 'interval', seconds=20)  
-    scheduler.start()
-    
+    scheduler.start()  
     try:
         app.run(debug=True)
     except (KeyboardInterrupt, SystemExit):

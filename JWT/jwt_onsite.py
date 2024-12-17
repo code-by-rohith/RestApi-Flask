@@ -14,7 +14,6 @@ def login():
     password = data.get('password')
 
     if users.get(username) == password:
-     
         token = jwt.encode({
             'sub': username,
             'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=1) 

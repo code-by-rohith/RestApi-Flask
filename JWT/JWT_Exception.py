@@ -55,7 +55,6 @@ def check():
         
         except jwt.InvalidSignatureError:
             return jsonify({"message": "enter correct token"}), 401
-        
     return jsonify({"message": "error or incorrect token"}), 401
 
 @app.route('/get/<string:id>', methods=['GET'])

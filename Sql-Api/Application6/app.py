@@ -27,20 +27,17 @@ def create_user(username):
     password = request.json.get('password')
     if not password:
         return jsonify({"message": "Password is required"}), 400
-
     hashed_password = generate_password_hash(password)
     new_user = User(username=username, password=hashed_password)
     db.session.add(new_user)
     db.session.commit()
     return jsonify({"message": "User created", "username": username}), 201
-
 @app.route('/api/v1/users/<string:username>', methods=['GET'])
 def get_user(username):
     user = User.query.filter_by(username=username).first()
     if user:
         return jsonify(user.to_dict())
     return jsonify({"message": "User not found"}), 404
-
 
 @app.route('/api/v1/users/<string:username>', methods=['DELETE'])
 def delete_user(username):

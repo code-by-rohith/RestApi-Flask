@@ -44,7 +44,5 @@ def posting():
         return jsonify({'message': "Successfully posted", 'id': str(result.inserted_id)}), 201
     return jsonify({'message': "Invalid input format. Must be a list or a single document."}), 400
 
-
-
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

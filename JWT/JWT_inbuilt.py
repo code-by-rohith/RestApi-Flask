@@ -8,7 +8,6 @@ jwt = JWTManager(app)
 users = {}
 data = {}
 current_id = 1
-
 @app.route('/see', methods=['GET'])
 def see():
     return jsonify({"Data": data})
@@ -18,7 +17,6 @@ def register():
     global current_id
     username = request.json.get('username')
     password = request.json.get('password')
-
     if username in users:
         return jsonify({"msg": "User already exists"}), 400
     users[username] = password
@@ -28,19 +26,16 @@ def register():
         "password": password
     }
     current_id += 1
-
     return jsonify({"msg": "User registered successfully", "user_id": current_id - 1}), 201
 @app.route('/login', methods=['POST'])
 def login():
     username = request.json.get('username')
     password = request.json.get('password')
-
     if users.get(username) != password:
         return jsonify({"msg": "Bad username or password"}), 401
 
     access_token = create_access_token(identity=username)
     return jsonify(access_token=access_token)
-
 @app.route('/protected', methods=['GET'])
 @jwt_required()
 def protected():
