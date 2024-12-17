@@ -19,7 +19,6 @@ def add_student():
     students.append(student)  
 
     return student_schema.dump(student), 201
-
 @student_bp.route('/', methods=['GET'])
 def get_students():
     return students_schema.dump(students), 200
