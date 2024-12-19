@@ -25,7 +25,7 @@ def upper(s):
     return s.upper()
 
 @app.template_filter('repeat')
-def repeat(s,times=2):
+def repeat(s,times):
     return s*times
 
 @app.template_filter('pattern')

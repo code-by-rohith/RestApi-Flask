@@ -29,7 +29,6 @@ def search_by_query():
             temp = data1[id]
             flash('Successfully got the data!', 'success') 
             return render_template('search.html', temp=temp)
-
     flash('Invalid ID. Please try again.', 'danger')  
     return redirect(url_for('main'))
 
